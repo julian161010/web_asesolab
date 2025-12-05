@@ -32,7 +32,7 @@
 			font-size: 16px;
 		}
 		
-		/* Cookie Overlay (bloquea el contenido) */
+		/* Cookie Overlay (bloquea el contenido hasta aceptar/rechazar) */
 		.cookie-overlay {
 			position: fixed;
 			top: 0;
@@ -200,7 +200,7 @@
 			background: #DDDDDD;
 		}
 		
-		/* Header */
+		/* Header - AJUSTADO MÁS ALTO PARA LOGO GRANDE */
 		header {
 			position: fixed;
 			top: 0;
@@ -208,32 +208,40 @@
 			background: #FFFFFF;
 			border-bottom: 1px solid #EBEBEB;
 			z-index: 1000;
+			padding: 0;
+			height: 115px; /* AUMENTADO: de 90px a 115px */
+			display: flex;
+			align-items: center;
 		}
 		
 		nav {
-			padding: 14px 20px;
+			padding: 0 20px;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			max-width: 100%;
+			width: 100%;
+			height: 100%;
 		}
 		
 		.logo {
 			display: flex;
 			align-items: center;
+			height: 100%;
 		}
 		
 		.logo-img {
-			height: 50px; /* AUMENTADO de 40px a 50px */
+			height: 100px; /* AUMENTADO: de 75px a 100px */
 			width: auto;
 			font-weight: 700;
-			font-size: 24px;
+			font-size: 28px; /* Aumentado para texto fallback */
 			color: var(--black);
 			text-decoration: none;
+			display: flex;
+			align-items: center;
 		}
 		
 		.cta-header {
-			padding: 8px 16px;
+			padding: 12px 24px;
 			background: var(--black);
 			color: white;
 			text-decoration: none;
@@ -250,9 +258,9 @@
 			background: #222222;
 		}
 		
-		/* Hero Section */
+		/* Hero Section - AJUSTADO PARA HEADER MÁS ALTO */
 		.hero {
-			padding: 80px 20px 40px;
+			padding: 155px 20px 40px; /* Aumentado de 120px a 155px por header más alto */
 			text-align: center;
 		}
 		
@@ -283,7 +291,7 @@
 			font-weight: 600;
 		}
 		
-		/* Video Container - CORREGIDO */
+		/* Video Container - VIDEO DE GOOGLE DRIVE */
 		.video-container {
 			margin: 32px auto;
 			border-radius: 12px;
@@ -299,7 +307,7 @@
 			padding-top: 56.25%; /* Relación 16:9 */
 		}
 		
-		.video-iframe {
+		.video-player {
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -508,54 +516,6 @@
 		.testimonial-date {
 			font-size: 14px;
 			color: var(--gray);
-		}
-		
-		.leave-review-container {
-			text-align: center;
-			margin-top: 40px;
-			padding: 32px;
-			background: white;
-			border-radius: 12px;
-			border: 1px solid #EBEBEB;
-			max-width: 600px;
-			margin-left: auto;
-			margin-right: auto;
-		}
-		
-		.leave-review-title {
-			font-size: 20px;
-			font-weight: 600;
-			margin-bottom: 16px;
-			color: var(--black);
-		}
-		
-		.leave-review-text {
-			font-size: 15px;
-			color: var(--gray);
-			margin-bottom: 24px;
-			line-height: 1.6;
-		}
-		
-		.leave-review-button {
-			display: inline-flex;
-			align-items: center;
-			gap: 8px;
-			padding: 12px 24px;
-			background: #00B67A;
-			color: white;
-			text-decoration: none;
-			border-radius: 8px;
-			font-weight: 600;
-			font-size: 16px;
-			transition: all 0.2s;
-			border: none;
-			cursor: pointer;
-		}
-		
-		.leave-review-button:hover {
-			background: #009E6E;
-			transform: translateY(-2px);
-			box-shadow: 0 4px 12px rgba(0, 182, 122, 0.2);
 		}
 		
 		/* Featured Section */
@@ -851,16 +811,16 @@
 		/* Tablet Breakpoint */
 		@media (min-width: 744px) {
 			nav {
-				padding: 16px 40px;
+				padding: 0 40px;
 			}
 			
 			.logo-img {
-				height: 60px; /* AUMENTADO de 50px a 60px */
-				font-size: 28px;
+				height: 110px; /* AUMENTADO: de 85px a 110px */
+				font-size: 32px; /* Aumentado para texto fallback */
 			}
 			
 			.hero {
-				padding: 100px 40px 48px;
+				padding: 165px 40px 48px; /* Aumentado de 140px a 165px por header más alto */
 			}
 			
 			section {
@@ -921,18 +881,22 @@
 			.trustpilot-badge {
 				margin-bottom: 0;
 			}
+			
+			header {
+				height: 125px; /* Aumentado para tablet */
+			}
 		}
 		
 		/* Desktop Breakpoint */
 		@media (min-width: 1128px) {
 			nav {
-				padding: 16px 80px;
+				padding: 0 80px;
 				max-width: 1760px;
 				margin: 0 auto;
 			}
 			
 			.hero {
-				padding: 120px 80px 64px;
+				padding: 190px 80px 64px; /* Aumentado de 160px a 190px por header más alto */
 				max-width: 1760px;
 				margin: 0 auto;
 			}
@@ -1000,8 +964,17 @@
 			
 			/* LOGO MÁS GRANDE EN DESKTOP */
 			.logo-img {
-				height: 70px; /* NUEVO tamaño para desktop */
-				font-size: 32px;
+				height: 125px; /* AUMENTADO: de 95px a 125px */
+				font-size: 36px; /* Aumentado para texto fallback */
+			}
+			
+			header {
+				height: 140px; /* Aumentado para desktop */
+			}
+			
+			.cta-header {
+				padding: 14px 28px;
+				font-size: 16px;
 			}
 		}
 		
@@ -1036,8 +1009,51 @@
 				padding: 24px 20px;
 			}
 			
-			.leave-review-container {
-				padding: 24px;
+			/* Ajuste para móvil con header más compacto */
+			.hero {
+				padding-top: 145px; /* Aumentado de 110px a 145px */
+			}
+			
+			.logo-img {
+				height: 100px; /* AUMENTADO: de 65px a 100px */
+				font-size: 26px; /* Aumentado para texto fallback */
+			}
+			
+			header {
+				height: 115px; /* Aumentado de 70px a 80px */
+			}
+			
+			.cta-header {
+				padding: 10px 18px;
+				font-size: 14px;
+			}
+		}
+		
+		/* Ajustes para móviles muy pequeños */
+		@media (max-width: 374px) {
+			.logo-img {
+				height: 80px; /* AUMENTADO: de 60px a 80px */
+				font-size: 24px; /* Aumentado para texto fallback */
+			}
+			
+			.hero {
+				padding-top: 120px; /* Aumentado de 100px a 120px */
+			}
+			
+			.cta-header {
+				padding: 9px 16px;
+				font-size: 13px;
+			}
+			
+			header {
+				height: 95px; /* Aumentado de 65px a 75px */
+			}
+		}
+		
+		/* Asegurar que header no tape nada */
+		@media (min-width: 1128px) {
+			.hero h1 {
+				margin-top: 0;
 			}
 		}
 	</style>
@@ -1084,31 +1100,22 @@
 		</header>
 
 		<section class="hero">
-			<h1>Maximiza tu ahorro<br>Reduce tus impuestos</h1>
-			<p class="hero-subtitle">Somos abogados fiscalistas, no gestores de papeles. Diseñamos planes fiscales a medida, con rigor jurídico y enfoque empresarial.</p>
+			<!-- CAMBIO 1: Título actualizado -->
+			<h1>Somos abogados fiscalistas, no gestores que solo presentan modelos</h1>
+			<p class="hero-subtitle">Diseñamos planes fiscales a medida, con rigor jurídico y enfoque empresarial.</p>
 			<p class="hero-price">Planificación fiscal estratégica, reestructuración societaria y protección patrimonial.<br>Todo incluido desde 190 € al mes.</p>
 			
-			<!-- VIDEO CORREGIDO con tu ID de YouTube -->
+			<!-- VIDEO DE GOOGLE DRIVE -->
 			<div class="video-container">
 				<div class="video-wrapper">
-					<!-- Placeholder para el video -->
-					<div class="video-placeholder" id="videoPlaceholder">
-						<div class="play-button">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-								<path d="M8 5v14l11-7z"/>
-							</svg>
-						</div>
-						<p>Ver video explicativo</p>
-					</div>
-					<!-- Iframe del video (inicialmente oculto) -->
+					<!-- Iframe de Google Drive -->
 					<iframe 
-						class="video-iframe"
-						id="videoIframe"
-						src="" 
-						title="ASESOLAB Video" 
-						frameborder="0" 
+						class="video-player"
+						id="videoPlayer"
+						src="https://drive.google.com/file/d/1aZNtK-ViByl4giD91dvznFWw_ZJet-17/preview"
+						allow="autoplay; fullscreen; picture-in-picture"
 						allowfullscreen
-						style="display: none;">
+						style="border: none;">
 					</iframe>
 				</div>
 			</div>
@@ -1182,7 +1189,7 @@
 			</div>
 		</section>
 
-		<!-- SECCIÓN DE OPINIONES MEJORADA -->
+		<!-- SECCIÓN DE OPINIONES - CON LAS OPINIONES REALES -->
 		<section class="testimonials">
 			<div class="testimonials-header">
 				<div>
@@ -1196,17 +1203,25 @@
 			</div>
 			
 			<div class="testimonials-grid" id="testimonialsContainer">
-				<!-- Las opiniones se cargarán dinámicamente desde JavaScript -->
-				<!-- Se muestran 3 opiniones reales de Trustpilot -->
-			</div>
-			
-			<!-- Sección para dejar opinión -->
-			<div class="leave-review-container">
-				<h3 class="leave-review-title">¿Ya eres cliente de ASESOLAB?</h3>
-				<p class="leave-review-text">Tu opinión nos ayuda a seguir mejorando y a que más empresarios como tú puedan beneficiarse de nuestros servicios.</p>
-				<a href="https://es.trustpilot.com/evaluate/asesolabygonzalbesasociados.com" target="_blank" class="leave-review-button">
-					Dejar mi opinión en Trustpilot
-				</a>
+				<!-- CAMBIO 2: Opiniones reales de Trustpilot -->
+				<div class="testimonial-card">
+					<div class="testimonial-rating">★★★★★</div>
+					<p class="testimonial-text">"Servicio muy profesional. Me gestionaron todos los trámites contables y fiscales con claridad, rapidez y mucha seriedad. Se nota que conocen bien su trabajo y me explicaron cada paso de forma sencilla. La comunicación fue fluida y siempre respondieron cuando necesitaba algo. Muy recomendable."</p>
+					<p class="testimonial-author">Cristina Regueiro</p>
+					<p class="testimonial-date">Hace 4 días ✓ Verificado</p>
+				</div>
+				<div class="testimonial-card">
+					<div class="testimonial-rating">★★★★★</div>
+					<p class="testimonial-text">"Llevo tres años con ellos, al principio tuve algunas dudas, porque la respuesta a uno de mis primeros correos tardó más de lo esperado, y pensé que sería complicado y mas de lo mismo. Pero una vez arrancamos, la experiencia con ellos ha sido muy buena. Son claros, cercanos y explican todo de forma que realmente se entiende, algo que agradezco muchísimo porque los temas legales me resultan densos. Además, se nota que están encima de los plazos importantes y se anticipan a los posibles problemas. 100% recomendable"</p>
+					<p class="testimonial-author">Javier Vázquez Rodríguez</p>
+					<p class="testimonial-date">27 nov 2025 ✓ Verificado</p>
+				</div>
+				<div class="testimonial-card">
+					<div class="testimonial-rating">★★★★★</div>
+					<p class="testimonial-text">"Increíble antencion! Te explican todo estupendamente!!! Jamás confiaré tanto como confío en ellos! Siempre ayudan en todo y jamás te ponen una pega de nada! MIL GRACIAS POR TODO!"</p>
+					<p class="testimonial-author">David Gutierrez</p>
+					<p class="testimonial-date">27 nov 2025 ✓ Verificado</p>
+				</div>
 			</div>
 		</section>
 
@@ -1490,7 +1505,7 @@
 	</div>
 
 	<script>
-		// LÓGICA COMPLETA PARA COOKIES, MODALES Y VIDEO
+		// LÓGICA COMPLETA PARA COOKIES, MODALES, VIDEO Y TRUSTPILOT
 		document.addEventListener('DOMContentLoaded', function() {
 			// === ELEMENTOS PRINCIPALES ===
 			const cookieOverlay = document.getElementById('cookieOverlay');
@@ -1517,149 +1532,70 @@
 			const modalCloseButtons = document.querySelectorAll('.modal-close');
 			
 			// === ELEMENTOS DEL VIDEO ===
-			const videoPlaceholder = document.getElementById('videoPlaceholder');
-			const videoIframe = document.getElementById('videoIframe');
-			
-			// === VARIABLES DE ESTADO ===
-			let cookiesDecisionMade = false;
+			const videoPlayer = document.getElementById('videoPlayer');
 			
 			// === FUNCIONES PRINCIPALES ===
 			
-			// 1. FUNCIÓN PARA CARGAR EL VIDEO DE YOUTUBE - VERSIÓN MEJORADA
-			function loadYouTubeVideo() {
-				if (!videoPlaceholder || !videoIframe) return;
+			// 1. FUNCIÓN PARA VERIFICAR DECISIÓN PREVIA DE COOKIES
+			function checkCookieDecision() {
+				const cookiesDecision = localStorage.getItem('cookiesDecision');
+				const cookiesType = localStorage.getItem('cookiesType');
 				
-				// ID de video: ZWO-Tp9UbEw
-				const videoId = 'ZWO-Tp9UbEw';
-				
-				// URL optimizada para evitar errores (usando youtube-nocookie)
-				const videoUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&controls=1&enablejsapi=1`;
-				
-				try {
-					// Establecer la URL en el iframe
-					videoIframe.src = videoUrl;
+				if (cookiesDecision) {
+					// Ya hay una decisión previa
+					cookieOverlay.style.display = 'none';
+					mainContent.classList.add('active');
+					document.body.style.overflow = 'auto';
 					
-					// Mostrar el iframe y ocultar el placeholder
-					videoIframe.style.display = 'block';
-					videoPlaceholder.style.display = 'none';
+					// Mostrar banner solo si rechazó cookies no esenciales
+					if (cookiesDecision === 'rejected' && cookiesType === 'essential') {
+						setTimeout(() => {
+							cookieBanner.classList.add('active');
+						}, 1000);
+					}
 					
-					console.log('Video cargado (modo seguro):', videoUrl);
-				} catch (error) {
-					console.error('Error al cargar el video:', error);
-					
-					// Si hay error, mostrar mensaje al usuario
-					videoPlaceholder.innerHTML = `
-						<div style="text-align: center; padding: 20px;">
-							<div class="play-button">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-									<path d="M8 5v14l11-7z"/>
-								</svg>
-							</div>
-							<p>Error al cargar el video</p>
-							<p style="font-size: 14px; margin-top: 10px;">
-								<a href="https://youtu.be/${videoId}" target="_blank" 
-								   style="color: white; text-decoration: underline;">
-									Ver en YouTube
-								</a>
-							</p>
-						</div>
-					`;
+					console.log('Decisión previa encontrada:', cookiesDecision, cookiesType);
+					return true;
 				}
+				
+				// No hay decisión previa
+				console.log('No hay decisión previa de cookies');
+				return false;
 			}
 			
 			// 2. FUNCIÓN PARA ACEPTAR TODAS LAS COOKIES
 			function acceptAllCookies() {
-				// Guardar decisión del usuario
 				localStorage.setItem('cookiesDecision', 'accepted');
 				localStorage.setItem('cookiesType', 'all');
-				cookiesDecisionMade = true;
+				localStorage.setItem('cookiesTimestamp', new Date().toISOString());
 				
-				// Mostrar contenido principal
 				cookieOverlay.style.display = 'none';
 				mainContent.classList.add('active');
 				cookieBanner.classList.remove('active');
-				
-				// Restaurar scroll
 				document.body.style.overflow = 'auto';
 				
-				console.log('Cookies aceptadas');
+				console.log('Cookies aceptadas - decisión guardada en localStorage');
 			}
 			
 			// 3. FUNCIÓN PARA RECHAZAR COOKIES NO ESENCIALES
 			function rejectNonEssentialCookies() {
-				// Guardar decisión del usuario
 				localStorage.setItem('cookiesDecision', 'rejected');
 				localStorage.setItem('cookiesType', 'essential');
-				cookiesDecisionMade = true;
+				localStorage.setItem('cookiesTimestamp', new Date().toISOString());
 				
-				// Mostrar contenido principal
 				cookieOverlay.style.display = 'none';
 				mainContent.classList.add('active');
-				cookieBanner.classList.add('active');
-				
-				// Restaurar scroll
 				document.body.style.overflow = 'auto';
 				
-				console.log('Cookies no esenciales rechazadas');
-			}
-			
-			// 4. FUNCIÓN PARA ABRIR MODALES
-			function openModal(modal) {
-				if (!modal) return;
-				modal.classList.add('active');
-				document.body.style.overflow = 'hidden';
-			}
-			
-			// 5. FUNCIÓN PARA CERRAR MODALES
-			function closeModal(modal) {
-				if (!modal) return;
-				modal.classList.remove('active');
-				document.body.style.overflow = 'auto';
-			}
-			
-			// 6. FUNCIÓN PARA CARGAR OPINIONES
-			function loadTestimonials() {
-				const testimonialsContainer = document.getElementById('testimonialsContainer');
-				if (!testimonialsContainer) return;
+				// Mostrar banner después de un breve retraso
+				setTimeout(() => {
+					cookieBanner.classList.add('active');
+				}, 500);
 				
-				// Opiniones reales de Trustpilot
-				const testimonials = [
-					{
-						rating: '★★★★★',
-						text: '"Mi experiencia con AsesorLab ha sido excelente. Gonzalo y su equipo han demostrado un profundo conocimiento en materia fiscal y han sido muy resolutivos. Han optimizado mi situación fiscal de manera significativa y su asesoramiento ha sido claro y profesional en todo momento."',
-						author: 'Juan Carlos',
-						date: 'Empresario - Revisión reciente'
-					},
-					{
-						rating: '★★★★★',
-						text: '"Contraté los servicios de AsesorLab para la planificación fiscal de mi empresa y ha sido una de las mejores decisiones. No solo han cumplido con todas las expectativas, sino que han superado ampliamente lo que esperaba. Su enfoque proactivo y su capacidad para anticiparse a los problemas han sido clave."',
-						author: 'María López',
-						date: 'Directora de empresa - Revisión reciente'
-					},
-					{
-						rating: '★★★★★',
-						text: '"Después de años con gestorías tradicionales, descubrir AsesorLab ha sido un cambio radical. Su equipo de abogados fiscalistas no solo presenta impuestos, sino que diseña estrategias reales de ahorro. La comunicación es directa y personalizada, algo que valoramos enormemente."',
-						author: 'Carlos Fernández',
-						date: 'Propietario de negocio - Revisión reciente'
-					}
-				];
-				
-				// Limpiar y cargar testimonios
-				testimonialsContainer.innerHTML = '';
-				testimonials.forEach(testimonial => {
-					const testimonialCard = document.createElement('div');
-					testimonialCard.className = 'testimonial-card';
-					testimonialCard.innerHTML = `
-						<div class="testimonial-rating">${testimonial.rating}</div>
-						<p class="testimonial-text">${testimonial.text}</p>
-						<p class="testimonial-author">${testimonial.author}</p>
-						<p class="testimonial-date">${testimonial.date}</p>
-					`;
-					testimonialsContainer.appendChild(testimonialCard);
-				});
+				console.log('Cookies no esenciales rechazadas - decisión guardada en localStorage');
 			}
 			
-			// 7. FUNCIÓN PARA INICIALIZAR LOGO - ACTUALIZADA CON TAMAÑO MÁS GRANDE
+			// 4. FUNCIÓN PARA INICIALIZAR LOGO CON TAMAÑO MÁS GRANDE
 			function initializeLogo() {
 				const logoElement = document.querySelector('.logo-img');
 				if (!logoElement) return;
@@ -1667,49 +1603,77 @@
 				const logoImg = document.createElement('img');
 				logoImg.src = 'images/logo-asesolab.png';
 				logoImg.alt = 'ASESOLAB';
-				logoImg.style.height = '50px'; // TAMAÑO AUMENTADO de 40px a 50px
+				logoImg.style.height = '100px'; // Aumentado para móvil
 				logoImg.style.width = 'auto';
+				logoImg.style.maxWidth = '100%';
 				
-				// Manejar error de carga de imagen
 				logoImg.onerror = function() {
 					console.log('Logo no encontrado, usando texto como fallback');
+					// Mantener el texto original si la imagen no se carga
 				};
 				
-				// Reemplazar si la imagen se carga
 				logoImg.onload = function() {
 					logoElement.parentNode.replaceChild(logoImg, logoElement);
+					console.log('Logo cargado correctamente con tamaño 100px (móvil)');
+					
+					// Ajustar tamaño según el viewport
+					adjustLogoSize();
 				};
+				
+				// Ajustar logo al cambiar tamaño de ventana
+				window.addEventListener('resize', adjustLogoSize);
+			}
+			
+			// 5. FUNCIÓN PARA AJUSTAR TAMAÑO DEL LOGO SEGÚN VIEWPORT
+			function adjustLogoSize() {
+				const logoImg = document.querySelector('.logo img');
+				if (!logoImg) return;
+				
+				const width = window.innerWidth;
+				
+				if (width >= 1128) {
+					logoImg.style.height = '125px'; // Desktop - Aumentado
+				} else if (width >= 744) {
+					logoImg.style.height = '110px'; // Tablet - Aumentado
+				} else if (width <= 374) {
+					logoImg.style.height = '80px'; // Móvil pequeño - Aumentado
+				} else {
+					logoImg.style.height = '100px'; // Móvil normal - Aumentado
+				}
+			}
+			
+			// 6. FUNCIONES PARA MODALES
+			function openModal(modal) {
+				if (!modal) return;
+				modal.classList.add('active');
+				document.body.style.overflow = 'hidden';
+			}
+			
+			function closeModal(modal) {
+				if (!modal) return;
+				modal.classList.remove('active');
+				document.body.style.overflow = 'auto';
 			}
 			
 			// === INICIALIZACIÓN ===
 			function initializePage() {
-				// 1. Cargar testimonios
-				loadTestimonials();
+				// 1. Verificar decisión de cookies
+				const hasCookieDecision = checkCookieDecision();
 				
-				// 2. Inicializar logo
-				initializeLogo();
-				
-				// 3. Verificar decisión previa de cookies
-				const previousDecision = localStorage.getItem('cookiesDecision');
-				const previousType = localStorage.getItem('cookiesType');
-				
-				// SIEMPRE mostrar overlay de cookies (como solicitaste)
-				// Esto hace que aparezca cada vez que se entra a la página
-				cookieOverlay.style.display = 'flex';
-				mainContent.classList.remove('active');
-				document.body.style.overflow = 'hidden';
-				
-				// Si ya había una decisión previa, mostrar banner también
-				if (previousDecision === 'rejected' && previousType === 'essential') {
-					setTimeout(() => {
-						cookieBanner.classList.add('active');
-					}, 100);
+				// 2. Si no hay decisión, mostrar overlay
+				if (!hasCookieDecision) {
+					cookieOverlay.style.display = 'flex';
+					mainContent.classList.remove('active');
+					document.body.style.overflow = 'hidden';
 				}
+				
+				// 3. Inicializar logo con tamaño aumentado
+				initializeLogo();
 			}
 			
 			// === EVENT LISTENERS ===
 			
-			// 1. Event listeners para overlay de cookies
+			// Cookies overlay
 			if (acceptCookiesOverlay) {
 				acceptCookiesOverlay.addEventListener('click', acceptAllCookies);
 			}
@@ -1718,7 +1682,7 @@
 				rejectCookiesOverlay.addEventListener('click', rejectNonEssentialCookies);
 			}
 			
-			// 2. Event listeners para banner de cookies
+			// Cookies banner
 			if (acceptCookies) {
 				acceptCookies.addEventListener('click', function() {
 					acceptAllCookies();
@@ -1732,12 +1696,7 @@
 				});
 			}
 			
-			// 3. Event listener para el video
-			if (videoPlaceholder) {
-				videoPlaceholder.addEventListener('click', loadYouTubeVideo);
-			}
-			
-			// 4. Event listeners para enlaces de política de cookies
+			// Enlaces de política de cookies
 			if (cookiePolicyLinkOverlay) {
 				cookiePolicyLinkOverlay.addEventListener('click', function(e) {
 					e.preventDefault();
@@ -1753,7 +1712,7 @@
 				});
 			}
 			
-			// 5. Event listeners para enlaces del footer
+			// Enlaces del footer
 			if (avisoLegalLink) {
 				avisoLegalLink.addEventListener('click', function(e) {
 					e.preventDefault();
@@ -1775,7 +1734,7 @@
 				});
 			}
 			
-			// 6. Event listeners para cerrar modales
+			// Cerrar modales
 			modalCloseButtons.forEach(button => {
 				button.addEventListener('click', function() {
 					const modal = this.closest('.modal');
@@ -1783,7 +1742,7 @@
 				});
 			});
 			
-			// 7. Cerrar modal al hacer clic fuera del contenido
+			// Cerrar modal al hacer clic fuera
 			window.addEventListener('click', function(e) {
 				const modals = document.querySelectorAll('.modal.active');
 				modals.forEach(modal => {
@@ -1793,7 +1752,7 @@
 				});
 			});
 			
-			// 8. Cerrar modal con tecla ESC
+			// Cerrar modal con tecla ESC
 			window.addEventListener('keydown', function(e) {
 				if (e.key === 'Escape') {
 					const modals = document.querySelectorAll('.modal.active');
@@ -1806,12 +1765,9 @@
 			// === INICIALIZAR LA PÁGINA ===
 			initializePage();
 			
-			// === CONFIGURACIÓN ADICIONAL ===
-			// Configurar el iframe del video para evitar errores
-			if (videoIframe) {
-				// Configuración mínima para evitar errores de consola
-				videoIframe.setAttribute('allowfullscreen', '');
-				videoIframe.setAttribute('title', 'Video explicativo ASESOLAB');
+			// Configurar video de Google Drive
+			if (videoPlayer) {
+				console.log('Video de Google Drive configurado:', videoPlayer.src);
 			}
 		});
 	</script>
