@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ASESOLAB - Abogados Fiscalistas</title>
+	<meta name="description" content="ASESOLAB - Abogados fiscalistas: planificación tributaria, reestructuración empresarial y protección patrimonial.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--black: #000000;
+			--dark-gray: #222222;
+			--gray: #717171;
+			--light-gray: #DDDDDD;
+			--bg-light: #F7F7F7;
+		}
+		
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+			color: var(--dark-gray);
+			line-height: 1.5;
+			background: #FFFFFF;
+			font-weight: 400;
+			font-size: 16px;
+		}
+		
+		/* Cookie Overlay (bloquea el contenido) */
+		.cookie-overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.95);
+			z-index: 9999;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 20px;
+		}
+		
+		.cookie-overlay-content {
+			background: white;
+			border-radius: 12px;
+			padding: 32px;
+			max-width: 600px;
+			width: 100%;
+			box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+		}
+		
+		.cookie-overlay h2 {
+			font-size: 24px;
+			margin-bottom: 16px;
+			color: var(--black);
+		}
+		
+		.cookie-overlay p {
+			font-size: 15px;
+			color: var(--gray);
+			margin-bottom: 24px;
+			line-height: 1.6;
+		}
+		
+		.cookie-overlay-buttons {
+			display: flex;
+			gap: 12px;
+			flex-wrap: wrap;
+		}
+		
+		.cookie-overlay-btn {
+			padding: 12px 24px;
+			border-radius: 8px;
+			font-weight: 600;
+			font-size: 15px;
+			cursor: pointer;
+			transition: all 0.2s;
+			border: none;
+		}
+		
+		.cookie-overlay-accept {
+			background: var(--black);
+			color: white;
+			flex: 1;
+		}
+		
+		.cookie-overlay-accept:hover {
+			background: #222222;
+		}
+		
+		.cookie-overlay-reject {
+			background: #EBEBEB;
+			color: var(--dark-gray);
+			flex: 1;
+		}
+		
+		.cookie-overlay-reject:hover {
+			background: #DDDDDD;
+		}
+		
+		.cookie-overlay-policy-link {
+			color: var(--black);
+			text-decoration: underline;
+			cursor: pointer;
+			font-weight: 500;
+		}
+		
+		.cookie-overlay-policy-link:hover {
+			color: #222222;
+		}
+		
+		/* Contenido principal (inicialmente oculto) */
+		.main-content {
+			display: none;
+		}
+		
+		.main-content.active {
+			display: block;
+		}
+		
+		/* Cookie Banner (fijo inferior) */
+		.cookie-banner {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: #FFFFFF;
+			border-top: 1px solid #EBEBEB;
+			padding: 20px;
+			z-index: 2000;
+			box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+			display: none;
+		}
+		
+		.cookie-banner.active {
+			display: block;
+		}
+		
+		.cookie-content {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			align-items: center;
+		}
+		
+		.cookie-text {
+			font-size: 14px;
+			color: var(--gray);
+			text-align: center;
+			line-height: 1.5;
+		}
+		
+		.cookie-text a {
+			color: var(--black);
+			text-decoration: underline;
+			cursor: pointer;
+		}
+		
+		.cookie-buttons {
+			display: flex;
+			gap: 12px;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+		
+		.cookie-btn {
+			padding: 10px 20px;
+			border-radius: 8px;
+			font-weight: 600;
+			font-size: 14px;
+			cursor: pointer;
+			transition: all 0.2s;
+			border: none;
+		}
+		
+		.cookie-accept {
+			background: var(--black);
+			color: white;
+		}
+		
+		.cookie-accept:hover {
+			background: #222222;
+		}
+		
+		.cookie-reject {
+			background: #EBEBEB;
+			color: var(--dark-gray);
+		}
+		
+		.cookie-reject:hover {
+			background: #DDDDDD;
+		}
+		
+		/* Header */
+		header {
+			position: fixed;
+			top: 0;
+			width: 100%;
+			background: #FFFFFF;
+			border-bottom: 1px solid #EBEBEB;
+			z-index: 1000;
+		}
+		
+		nav {
+			padding: 14px 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			max-width: 100%;
+		}
+		
+		.logo {
+			display: flex;
+			align-items: center;
+		}
+		
+		.logo-img {
+			height: 50px; /* AUMENTADO de 40px a 50px */
+			width: auto;
+			font-weight: 700;
+			font-size: 24px;
+			color: var(--black);
+			text-decoration: none;
+		}
+		
+		.cta-header {
+			padding: 8px 16px;
+			background: var(--black);
+			color: white;
+			text-decoration: none;
+			border-radius: 8px;
+			font-weight: 600;
+			font-size: 14px;
+			transition: all 0.2s;
+			border: none;
+			cursor: pointer;
+			white-space: nowrap;
+		}
+		
+		.cta-header:hover {
+			background: #222222;
+		}
+		
+		/* Hero Section */
+		.hero {
+			padding: 80px 20px 40px;
+			text-align: center;
+		}
+		
+		.hero h1 {
+			font-size: clamp(28px, 8vw, 48px);
+			font-weight: 600;
+			line-height: 1.1;
+			margin-bottom: 16px;
+			letter-spacing: -0.5px;
+			color: var(--black);
+		}
+		
+		.hero-subtitle {
+			font-size: clamp(16px, 4vw, 18px);
+			color: var(--gray);
+			margin-bottom: 24px;
+			font-weight: 400;
+			line-height: 1.5;
+			max-width: 700px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		.hero-price {
+			font-size: clamp(16px, 4vw, 18px);
+			color: var(--black);
+			margin-bottom: 32px;
+			font-weight: 600;
+		}
+		
+		/* Video Container - CORREGIDO */
+		.video-container {
+			margin: 32px auto;
+			border-radius: 12px;
+			overflow: hidden;
+			box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+			max-width: 900px;
+			position: relative;
+		}
+		
+		.video-wrapper {
+			position: relative;
+			width: 100%;
+			padding-top: 56.25%; /* Relación 16:9 */
+		}
+		
+		.video-iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border: 0;
+		}
+		
+		.video-placeholder {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #000;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			color: white;
+			cursor: pointer;
+			transition: opacity 0.3s;
+		}
+		
+		.video-placeholder:hover {
+			opacity: 0.9;
+		}
+		
+		.play-button {
+			width: 80px;
+			height: 80px;
+			background: rgba(255, 255, 255, 0.2);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 16px;
+			border: 3px solid white;
+		}
+		
+		.play-button svg {
+			width: 30px;
+			height: 30px;
+			fill: white;
+			margin-left: 5px;
+		}
+		
+		.video-placeholder p {
+			font-size: 18px;
+			font-weight: 500;
+		}
+		
+		.cta-button {
+			display: inline-block;
+			padding: 14px 24px;
+			background: var(--black);
+			color: white;
+			text-decoration: none;
+			border-radius: 8px;
+			font-weight: 600;
+			font-size: 16px;
+			transition: all 0.2s;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			text-align: center;
+			margin-top: 24px;
+		}
+		
+		.cta-button:hover {
+			background: #222222;
+		}
+		
+		/* Content Sections */
+		section {
+			padding: 48px 20px;
+		}
+		
+		.section-title {
+			font-size: clamp(24px, 6vw, 32px);
+			font-weight: 600;
+			margin-bottom: 8px;
+			letter-spacing: -0.4px;
+			color: var(--black);
+			text-align: center;
+		}
+		
+		.section-subtitle {
+			font-size: clamp(16px, 4vw, 18px);
+			color: var(--gray);
+			margin-bottom: 32px;
+			text-align: center;
+		}
+		
+		/* Grid Layouts */
+		.grid-3, .grid-2 {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+		
+		/* Cards */
+		.card {
+			background: white;
+			border: 1px solid #EBEBEB;
+			border-radius: 12px;
+			padding: 24px;
+			transition: all 0.2s;
+		}
+		
+		.card:hover {
+			box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+			border-color: var(--black);
+		}
+		
+		.card h3 {
+			font-size: 18px;
+			font-weight: 600;
+			margin-bottom: 8px;
+			color: var(--black);
+			line-height: 1.3;
+		}
+		
+		.card p {
+			color: var(--gray);
+			font-size: 15px;
+			line-height: 1.5;
+		}
+		
+		/* Testimonials Section */
+		.testimonials {
+			background: var(--bg-light);
+		}
+		
+		.testimonials-header {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		
+		.trustpilot-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			margin-bottom: 16px;
+			padding: 8px 16px;
+			background: #00B67A;
+			color: white;
+			border-radius: 8px;
+			font-weight: 600;
+			text-decoration: none;
+			transition: all 0.2s;
+		}
+		
+		.trustpilot-badge:hover {
+			background: #009E6E;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(0, 182, 122, 0.2);
+		}
+		
+		.trustpilot-stars {
+			font-size: 20px;
+			color: #FFB800;
+			letter-spacing: 2px;
+		}
+		
+		.testimonials-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 24px;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		
+		.testimonial-card {
+			background: white;
+			border: 1px solid #EBEBEB;
+			border-radius: 12px;
+			padding: 32px 24px;
+			box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+		}
+		
+		.testimonial-rating {
+			font-size: 20px;
+			color: #FFB800;
+			margin-bottom: 16px;
+			letter-spacing: 2px;
+		}
+		
+		.testimonial-text {
+			font-size: 16px;
+			color: var(--dark-gray);
+			line-height: 1.6;
+			margin-bottom: 20px;
+			font-style: italic;
+		}
+		
+		.testimonial-author {
+			font-weight: 600;
+			color: var(--black);
+			margin-bottom: 8px;
+		}
+		
+		.testimonial-date {
+			font-size: 14px;
+			color: var(--gray);
+		}
+		
+		.leave-review-container {
+			text-align: center;
+			margin-top: 40px;
+			padding: 32px;
+			background: white;
+			border-radius: 12px;
+			border: 1px solid #EBEBEB;
+			max-width: 600px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		.leave-review-title {
+			font-size: 20px;
+			font-weight: 600;
+			margin-bottom: 16px;
+			color: var(--black);
+		}
+		
+		.leave-review-text {
+			font-size: 15px;
+			color: var(--gray);
+			margin-bottom: 24px;
+			line-height: 1.6;
+		}
+		
+		.leave-review-button {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 12px 24px;
+			background: #00B67A;
+			color: white;
+			text-decoration: none;
+			border-radius: 8px;
+			font-weight: 600;
+			font-size: 16px;
+			transition: all 0.2s;
+			border: none;
+			cursor: pointer;
+		}
+		
+		.leave-review-button:hover {
+			background: #009E6E;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(0, 182, 122, 0.2);
+		}
+		
+		/* Featured Section */
+		.featured {
+			background: var(--bg-light);
+		}
+		
+		.featured-content {
+			max-width: 100%;
+			text-align: center;
+		}
+		
+		.featured h2 {
+			font-size: clamp(28px, 7vw, 40px);
+			font-weight: 600;
+			margin-bottom: 16px;
+			color: var(--black);
+			line-height: 1.2;
+		}
+		
+		.featured p {
+			font-size: clamp(16px, 4vw, 18px);
+			color: var(--gray);
+			margin-bottom: 32px;
+			line-height: 1.6;
+		}
+		
+		/* Comparison Section */
+		.comparison-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+		
+		.comparison-card {
+			background: white;
+			border: 1px solid #EBEBEB;
+			border-radius: 12px;
+			padding: 32px 24px;
+		}
+		
+		.comparison-card.highlight {
+			background: var(--black);
+			color: white;
+			border: 1px solid var(--black);
+		}
+		
+		.comparison-card h3 {
+			font-size: 20px;
+			font-weight: 600;
+			margin-bottom: 20px;
+			color: var(--black);
+		}
+		
+		.comparison-card.highlight h3 {
+			color: white;
+		}
+		
+		.comparison-card ul {
+			list-style: none;
+		}
+		
+		.comparison-card li {
+			padding: 10px 0;
+			font-size: 15px;
+			padding-left: 28px;
+			position: relative;
+			color: var(--gray);
+			line-height: 1.5;
+		}
+		
+		.comparison-card.highlight li {
+			color: rgba(255,255,255,0.9);
+		}
+		
+		.comparison-card li::before {
+			content: '✓';
+			position: absolute;
+			left: 0;
+			font-weight: 600;
+			font-size: 16px;
+		}
+		
+		.comparison-card.highlight li::before {
+			color: #4ADE80;
+		}
+		
+		.comparison-card:not(.highlight) li::before {
+			content: '✗';
+			color: #F43F5E;
+		}
+		
+		/* FAQ Section */
+		.faq-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 32px;
+		}
+		
+		.faq-item h3 {
+			font-size: 18px;
+			font-weight: 600;
+			margin-bottom: 8px;
+			color: var(--black);
+			line-height: 1.3;
+		}
+		
+		.faq-item p {
+			font-size: 15px;
+			color: var(--gray);
+			line-height: 1.6;
+		}
+		
+		/* CTA Section */
+		.cta-section {
+			text-align: center;
+			background: var(--bg-light);
+		}
+		
+		.cta-section h2 {
+			font-size: clamp(28px, 7vw, 40px);
+			font-weight: 600;
+			margin-bottom: 16px;
+			color: var(--black);
+			line-height: 1.2;
+		}
+		
+		.cta-section p {
+			font-size: clamp(16px, 4vw, 18px);
+			color: var(--gray);
+			margin-bottom: 32px;
+			line-height: 1.6;
+		}
+		
+		.contact-info {
+			margin-top: 40px;
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			align-items: center;
+		}
+		
+		.contact-item {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			color: var(--gray);
+			font-size: 15px;
+		}
+		
+		.contact-item a {
+			color: var(--dark-gray);
+			text-decoration: none;
+			font-weight: 500;
+			word-break: break-word;
+		}
+		
+		.contact-item a:hover {
+			color: var(--black);
+			text-decoration: underline;
+		}
+		
+		/* Footer */
+		footer {
+			background: var(--bg-light);
+			border-top: 1px solid #EBEBEB;
+			padding: 40px 20px;
+			text-align: center;
+			color: var(--gray);
+			font-size: 14px;
+		}
+		
+		.footer-brand {
+			font-weight: 600;
+			color: var(--black);
+			margin-bottom: 8px;
+			font-size: 16px;
+		}
+		
+		.footer-links {
+			margin-top: 16px;
+			display: flex;
+			justify-content: center;
+			gap: 16px;
+			flex-wrap: wrap;
+		}
+		
+		.footer-links a {
+			color: var(--gray);
+			text-decoration: none;
+			font-size: 13px;
+			cursor: pointer;
+		}
+		
+		.footer-links a:hover {
+			color: var(--black);
+			text-decoration: underline;
+		}
+		
+		/* Modal Styles */
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 3000;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.5);
+			overflow-y: auto;
+		}
+		
+		.modal.active {
+			display: flex;
+			align-items: flex-start;
+			justify-content: center;
+			padding: 20px;
+			padding-top: 40px;
+		}
+		
+		.modal-content {
+			background-color: white;
+			padding: 40px 32px;
+			border-radius: 12px;
+			max-width: 800px;
+			width: 100%;
+			max-height: calc(100vh - 80px);
+			overflow-y: auto;
+			position: relative;
+		}
+		
+		.modal-close {
+			position: absolute;
+			top: 16px;
+			right: 16px;
+			font-size: 32px;
+			font-weight: 300;
+			color: var(--gray);
+			cursor: pointer;
+			background: none;
+			border: none;
+			padding: 4px 8px;
+			width: 40px;
+			height: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			line-height: 1;
+		}
+		
+		.modal-close:hover {
+			color: var(--black);
+		}
+		
+		.modal-content h2 {
+			font-size: 28px;
+			margin-bottom: 24px;
+			color: var(--black);
+			padding-right: 40px;
+		}
+		
+		.modal-content h3 {
+			font-size: 18px;
+			margin-top: 24px;
+			margin-bottom: 12px;
+			color: var(--black);
+			font-weight: 600;
+		}
+		
+		.modal-content p {
+			font-size: 15px;
+			line-height: 1.6;
+			color: var(--gray);
+			margin-bottom: 16px;
+		}
+		
+		.modal-content ul {
+			margin-left: 20px;
+			margin-bottom: 16px;
+		}
+		
+		.modal-content li {
+			font-size: 15px;
+			line-height: 1.6;
+			color: var(--gray);
+			margin-bottom: 8px;
+		}
+		
+		.modal-content strong {
+			color: var(--black);
+		}
+		
+		/* Tablet Breakpoint */
+		@media (min-width: 744px) {
+			nav {
+				padding: 16px 40px;
+			}
+			
+			.logo-img {
+				height: 60px; /* AUMENTADO de 50px a 60px */
+				font-size: 28px;
+			}
+			
+			.hero {
+				padding: 100px 40px 48px;
+			}
+			
+			section {
+				padding: 64px 40px;
+			}
+			
+			.grid-3 {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 20px;
+			}
+			
+			.grid-2 {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 20px;
+			}
+			
+			.testimonials-grid {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 30px;
+			}
+			
+			.comparison-grid {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 20px;
+			}
+			
+			.faq-grid {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 40px 48px;
+			}
+			
+			.cta-button {
+				width: auto;
+				display: inline-block;
+			}
+			
+			.cookie-content {
+				flex-direction: row;
+				justify-content: space-between;
+			}
+			
+			.cookie-text {
+				text-align: left;
+				flex: 1;
+			}
+			
+			footer {
+				padding: 48px 40px;
+			}
+			
+			.testimonials-header {
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				text-align: left;
+			}
+			
+			.trustpilot-badge {
+				margin-bottom: 0;
+			}
+		}
+		
+		/* Desktop Breakpoint */
+		@media (min-width: 1128px) {
+			nav {
+				padding: 16px 80px;
+				max-width: 1760px;
+				margin: 0 auto;
+			}
+			
+			.hero {
+				padding: 120px 80px 64px;
+				max-width: 1760px;
+				margin: 0 auto;
+			}
+			
+			section {
+				padding: 80px 80px;
+				max-width: 1760px;
+				margin: 0 auto;
+			}
+			
+			.video-container {
+				max-width: 900px;
+			}
+			
+			.grid-3 {
+				grid-template-columns: repeat(3, 1fr);
+				gap: 24px;
+			}
+			
+			.testimonials-grid {
+				grid-template-columns: repeat(3, 1fr);
+				gap: 32px;
+			}
+			
+			.card {
+				padding: 32px;
+			}
+			
+			.comparison-grid {
+				gap: 24px;
+				max-width: 1120px;
+				margin: 0 auto;
+			}
+			
+			.comparison-card {
+				padding: 40px;
+			}
+			
+			.faq-grid {
+				max-width: 1200px;
+				margin: 0 auto;
+				gap: 48px 64px;
+			}
+			
+			.featured-content {
+				max-width: 720px;
+				margin: 0 auto;
+			}
+			
+			.cta-section p {
+				max-width: 640px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.contact-info {
+				flex-direction: row;
+				gap: 48px;
+				justify-content: center;
+			}
+			
+			footer {
+				padding: 48px 80px;
+			}
+			
+			/* LOGO MÁS GRANDE EN DESKTOP */
+			.logo-img {
+				height: 70px; /* NUEVO tamaño para desktop */
+				font-size: 32px;
+			}
+		}
+		
+		/* Touch targets */
+		@media (max-width: 743px) {
+			.cta-button, .cta-header {
+				min-height: 44px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.cookie-overlay-content {
+				padding: 24px;
+			}
+			
+			.cookie-overlay-buttons {
+				flex-direction: column;
+			}
+			
+			.play-button {
+				width: 60px;
+				height: 60px;
+			}
+			
+			.play-button svg {
+				width: 24px;
+				height: 24px;
+			}
+			
+			.testimonial-card {
+				padding: 24px 20px;
+			}
+			
+			.leave-review-container {
+				padding: 24px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- Cookie Overlay (bloquea el contenido hasta aceptar/rechazar) -->
+	<div class="cookie-overlay" id="cookieOverlay">
+		<div class="cookie-overlay-content">
+			<h2>Configuración de Cookies</h2>
+			<p>Utilizamos cookies propias y de terceros para mejorar la experiencia de navegación y ofrecer contenidos de interés. Al continuar con la navegación entendemos que acepta nuestra <a class="cookie-overlay-policy-link" id="cookiePolicyLinkOverlay">Política de Cookies</a>.</p>
+			<div class="cookie-overlay-buttons">
+				<button class="cookie-overlay-btn cookie-overlay-accept" id="acceptCookiesOverlay">Aceptar todas las cookies</button>
+				<button class="cookie-overlay-btn cookie-overlay-reject" id="rejectCookiesOverlay">Rechazar cookies no esenciales</button>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Contenido principal (inicialmente oculto) -->
+	<div class="main-content" id="mainContent">
+		<!-- Cookie Banner (fijo inferior) -->
+		<div class="cookie-banner" id="cookieBanner">
+			<div class="cookie-content">
+				<div class="cookie-text">
+					Utilizamos cookies propias y de terceros para mejorar la experiencia de navegación. 
+					<a id="cookiePolicyLinkBanner">Más información</a>
+				</div>
+				<div class="cookie-buttons">
+					<button class="cookie-btn cookie-accept" id="acceptCookies">Aceptar</button>
+					<button class="cookie-btn cookie-reject" id="rejectCookies">Rechazar</button>
+				</div>
+			</div>
+		</div>
+
+		<header>
+			<nav>
+				<div class="logo">
+					<!-- Logo con fallback en caso de que no se cargue la imagen -->
+					<a href="#" class="logo-img">ASESOLAB</a>
+				</div>
+				<a href="https://reuniones.clientify.com/#/asesorlab/agendar" target="_blank" class="cta-header">
+					Agendar
+				</a>
+			</nav>
+		</header>
+
+		<section class="hero">
+			<h1>Maximiza tu ahorro<br>Reduce tus impuestos</h1>
+			<p class="hero-subtitle">Somos abogados fiscalistas, no gestores de papeles. Diseñamos planes fiscales a medida, con rigor jurídico y enfoque empresarial.</p>
+			<p class="hero-price">Planificación fiscal estratégica, reestructuración societaria y protección patrimonial.<br>Todo incluido desde 190 € al mes.</p>
+			
+			<!-- VIDEO CORREGIDO con tu ID de YouTube -->
+			<div class="video-container">
+				<div class="video-wrapper">
+					<!-- Placeholder para el video -->
+					<div class="video-placeholder" id="videoPlaceholder">
+						<div class="play-button">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+								<path d="M8 5v14l11-7z"/>
+							</svg>
+						</div>
+						<p>Ver video explicativo</p>
+					</div>
+					<!-- Iframe del video (inicialmente oculto) -->
+					<iframe 
+						class="video-iframe"
+						id="videoIframe"
+						src="" 
+						title="ASESOLAB Video" 
+						frameborder="0" 
+						allowfullscreen
+						style="display: none;">
+					</iframe>
+				</div>
+			</div>
+			
+			<a href="https://reuniones.clientify.com/#/asesorlab/agendar" target="_blank" class="cta-button">
+				Solicitar consultoría gratuita
+			</a>
+		</section>
+
+		<section>
+			<h2 class="section-title">Problemas que resolvemos</h2>
+			<p class="section-subtitle">Y que una gestoría tradicional nunca aborda</p>
+			<div class="grid-3">
+				<div class="card">
+					<h3>Pagas más impuestos de los necesarios</h3>
+					<p>Porque nadie analiza tu caso con visión estratégica.</p>
+				</div>
+				<div class="card">
+					<h3>Te informan tarde y con prisas</h3>
+					<p>La planificación fiscal requiere anticipación, no improvisación.</p>
+				</div>
+				<div class="card">
+					<h3>Solo recibes facturas</h3>
+					<p>Pero ninguna propuesta de optimización fiscal real.</p>
+				</div>
+				<div class="card">
+					<h3>Estructura societaria ineficiente</h3>
+					<p>Estás dejando oportunidades de ahorro sobre la mesa.</p>
+				</div>
+				<div class="card">
+					<h3>Sin soporte legal especializado</h3>
+					<p>Cuando surge un problema fiscal, no tienes quien te defienda.</p>
+				</div>
+				<div class="card">
+					<h3>Patrimonio desprotegido</h3>
+					<p>Frente a posibles riesgos fiscales o empresariales.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="featured">
+			<div class="featured-content">
+				<h2>En ASESOLAB hacemos lo contrario</h2>
+				<p>Diseñamos una estrategia fiscal a medida, revisamos tu situación cada trimestre y aplicamos todas las herramientas legales disponibles para reducir tu carga fiscal.</p>
+				<a href="https://reuniones.clientify.com/#/asesorlab/agendar" target="_blank" class="cta-button">
+					Agendar consultoría gratis
+				</a>
+			</div>
+		</section>
+
+		<section>
+			<h2 class="section-title">¿Qué hacemos por ti?</h2>
+			<p class="section-subtitle">Servicios principales</p>
+			<div class="grid-2">
+				<div class="card">
+					<h3>Planificación fiscal integral</h3>
+					<p>Optimización de impuestos con visión estratégica y análisis exhaustivo de tu situación.</p>
+				</div>
+				<div class="card">
+					<h3>Reestructuración empresarial</h3>
+					<p>Creación de estructuras eficientes adaptadas a tus objetivos empresariales y fiscales.</p>
+				</div>
+				<div class="card">
+					<h3>Cumplimiento fiscal y legal</h3>
+					<p>Control y seguimiento continuo con comunicación directa y proactiva.</p>
+				</div>
+				<div class="card">
+					<h3>Protección patrimonial</h3>
+					<p>Para empresarios y grupos familiares con estrategias de blindaje legal.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECCIÓN DE OPINIONES MEJORADA -->
+		<section class="testimonials">
+			<div class="testimonials-header">
+				<div>
+					<h2 class="section-title" style="margin-bottom: 8px;">Lo que dicen nuestros clientes</h2>
+					<p class="section-subtitle">Opiniones verificadas de empresarios y profesionales</p>
+				</div>
+				<a href="https://es.trustpilot.com/review/asesolabygonzalbesasociados.com" target="_blank" class="trustpilot-badge">
+					<span class="trustpilot-stars">★★★★★</span>
+					<span>Trustpilot 4.8</span>
+				</a>
+			</div>
+			
+			<div class="testimonials-grid" id="testimonialsContainer">
+				<!-- Las opiniones se cargarán dinámicamente desde JavaScript -->
+				<!-- Se muestran 3 opiniones reales de Trustpilot -->
+			</div>
+			
+			<!-- Sección para dejar opinión -->
+			<div class="leave-review-container">
+				<h3 class="leave-review-title">¿Ya eres cliente de ASESOLAB?</h3>
+				<p class="leave-review-text">Tu opinión nos ayuda a seguir mejorando y a que más empresarios como tú puedan beneficiarse de nuestros servicios.</p>
+				<a href="https://es.trustpilot.com/evaluate/asesolabygonzalbesasociados.com" target="_blank" class="leave-review-button">
+					Dejar mi opinión en Trustpilot
+				</a>
+			</div>
+		</section>
+
+		<section class="featured">
+				<h2 class="section-title" style="text-align: center;">¿Por qué ASESOLAB?</h2>
+				<p class="section-subtitle" style="text-align: center;">La diferencia con una gestoría tradicional</p>
+				<div class="comparison-grid">
+					<div class="comparison-card highlight">
+						<h3>ASESOLAB</h3>
+						<ul>
+							<li>Equipo asignado: abogado fiscalista, contable y documentalista</li>
+							<li>Estrategia legal real con comunicación directa</li>
+							<li>Precios cerrados, sin sorpresas ni costes ocultos</li>
+							<li>Servicio integral: fiscal, contable, legal y laboral</li>
+						</ul>
+					</div>
+					<div class="comparison-card">
+						<h3>Gestorías tradicionales</h3>
+						<ul>
+							<li>Solo presentan impuestos</li>
+							<li>Sin planificación estratégica</li>
+							<li>Sin protección patrimonial</li>
+							<li>Te hacen perder más dinero</li>
+						</ul>
+					</div>
+				</div>
+		</section>
+
+		<section>
+			<h2 class="section-title">Preguntas frecuentes</h2>
+			<div class="faq-grid">
+				<div class="faq-item">
+					<h3>¿Cómo empiezo?</h3>
+					<p>Agenda una consultoría gratuita donde analizaremos tu situación fiscal actual y te mostraremos oportunidades de optimización específicas para tu caso.</p>
+				</div>
+				<div class="faq-item">
+					<h3>¿Qué incluye el servicio?</h3>
+					<p>Equipo completo asignado, planificación fiscal trimestral, cumplimiento de obligaciones, asesoramiento legal continuo y protección patrimonial.</p>
+				</div>
+				<div class="faq-item">
+					<h3>¿Cuánto cuesta?</h3>
+					<p>Trabajamos con precios cerrados y transparentes. Durante la consultoría te presentaremos una propuesta personalizada sin compromisos.</p>
+				</div>
+				<div class="faq-item">
+					<h3>¿Qué me diferencia de una gestoría?</h3>
+					<p>Somos abogados fiscalistas especializados. No solo cumplimos obligaciones, diseñamos estrategias legales para reducir tu carga fiscal de forma segura.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="cta-section">
+			<h2>Solicita tu sesión estratégica gratuita</h2>
+			<p>Analizamos tu caso, detectamos fugas de dinero y te mostramos cómo optimizar tu fiscalidad desde el primer día.</p>
+			<a href="https://reuniones.clientify.com/#/asesorlab/agendar" target="_blank" class="cta-button">
+				Agendar asesoría
+			</a>
+			<div class="contact-info">
+				<div class="contact-item">
+					<span>✉️</span>
+					<a href="mailto:asesor@asesolabygonzalbesasociados.com">asesor@asesolabygonzalbesasociados.com</a>
+				</div>
+				<div class="contact-item">
+					<span>📱</span>
+					<a href="https://wa.me/34658049749" target="_blank">658 04 97 49</a>
+				</div>
+			</div>
+		</section>
+
+		<footer>
+			<p class="footer-brand">ASESOLAB</p>
+			<p>Despacho de Abogados Fiscalistas</p>
+			<div class="footer-links">
+				<a id="avisoLegalLink">Aviso Legal</a>
+				<span>·</span>
+				<a id="privacidadLink">Política de Privacidad</a>
+				<span>·</span>
+				<a id="cookiesLink">Política de Cookies</a>
+			</div>
+			<p style="margin-top: 16px; opacity: 0.7;">© 2024 ASESOLAB. Todos los derechos reservados.</p>
+		</footer>
+	</div>
+
+	<!-- Modal Aviso Legal -->
+	<div id="avisoLegalModal" class="modal">
+		<div class="modal-content">
+			<button class="modal-close">&times;</button>
+			<h2>Aviso Legal</h2>
+			<p>De conformidad con lo dispuesto en la normativa vigente en materia de protección de datos personales (Reglamento (UE) 2016/679, de 27 de abril de 2016 –RGPD–, Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales –LOPDGDD– y Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico –LSSI-CE–), le informamos de que sus datos personales se han incorporado a un fichero bajo la responsabilidad de <strong>ASESOLAB CONSULTING LLC</strong>, con la finalidad de remitirle información sobre eventos, noticias, novedades y los servicios profesionales de la compañía.</p>
+			<p>Como interesado, usted tiene derecho de acceso, rectificación, supresión, limitación del tratamiento, portabilidad y oposición, que podrá ejercer mediante escrito dirigido a:</p>
+			<p><strong>ASESOLAB CONSULTING LLC</strong><br>
+			7901 4th St N STE 300<br>
+			St. Petersburg, FL 33702<br>
+			T: 850-807-4500</p>
+			<p>O a través del correo electrónico habilitado para este fin: <strong>asesor@asesolabygonzalbesasociados.com</strong></p>
+			<p>Puede consultar la información adicional y detallada sobre Protección de Datos en nuestra Política de Privacidad disponible en la página web.</p>
+			<p>Si no desea seguir recibiendo información fiscal o comunicaciones comerciales, podrá darse de baja en cualquier momento enviando un correo electrónico a <strong>asesor@asesolabygonzalbesasociados.com</strong> indicando en el asunto "BAJA".</p>
+		</div>
+	</div>
+
+	<!-- Modal Política de Privacidad -->
+	<div id="privacidadModal" class="modal">
+		<div class="modal-content">
+			<button class="modal-close">&times;</button>
+			<h2>Política de Privacidad – ASESOLAB</h2>
+			<p>Esta Política de Privacidad regula la forma en que se gestionan los datos personales en el sitio web www.asesolab.com y en los canales digitales propiedad de:</p>
+			<p><strong>ASESOLAB CONSULTING LLC</strong><br>
+			7901 4th St N STE 300<br>
+			St. Petersburg, FL 33702<br>
+			T: 850-807-4500<br>
+			Email de contacto: <strong>asesor@asesolabygonzalbesasociados.com</strong></p>
+			<p>La lectura y aceptación de esta política es imprescindible para continuar utilizando nuestros servicios o enviar datos mediante los formularios disponibles.</p>
+			
+			<h3>Principios que aplicamos respecto a su privacidad</h3>
+			<p>En ASESOLAB mantenemos un compromiso absoluto con la transparencia y la seguridad jurídica. Nuestros principios son:</p>
+			<ul>
+				<li>Solo solicitamos la información estrictamente necesaria.</li>
+				<li>No compartimos datos personales salvo obligación legal o autorización expresa.</li>
+				<li>No utilizamos sus datos para finalidades distintas a las descritas en esta política.</li>
+				<li>Garantizamos altos estándares de protección y confidencialidad.</li>
+			</ul>
+			<p>Esta política podrá actualizarse para adaptarse a cambios normativos o de autorregulación. Se recomienda revisarla periódicamente.</p>
+			
+			<h3>Normativa aplicable</h3>
+			<p>ASESOLAB cumple con:</p>
+			<ul>
+				<li>Reglamento (UE) 2016/679, de 27 de abril de 2016 (RGPD)</li>
+				<li>Ley Orgánica 3/2018 (LOPDGDD)</li>
+				<li>Ley 34/2002, de Servicios de la Sociedad de la Información y Comercio Electrónico (LSSI-CE)</li>
+			</ul>
+			
+			<h3>Responsable del Tratamiento</h3>
+			<p><strong>ASESOLAB CONSULTING LLC</strong><br>
+			7901 4th St N STE 300<br>
+			St. Petersburg, FL 33702<br>
+			T: 850-807-4500<br>
+			Email: <strong>asesor@asesolabygonzalbesasociados.com</strong></p>
+			
+			<h3>Finalidad del Tratamiento</h3>
+			<p>En ASESOLAB tratamos los datos personales proporcionados por los usuarios para:</p>
+			<ul>
+				<li>Remitir información sobre eventos, noticias, novedades fiscales y legales.</li>
+				<li>Enviar ofertas y servicios profesionales del despacho.</li>
+				<li>Gestionar consultas y solicitudes recibidas a través de la web o redes sociales.</li>
+				<li>Prestar asesoramiento fiscal, legal, societario y patrimonial.</li>
+			</ul>
+			<p>Los datos se conservarán mientras exista relación con el usuario o no solicite su supresión.</p>
+			
+			<h3>Legitimación del Tratamiento</h3>
+			<p>La base legal es:</p>
+			<ul>
+				<li>Su consentimiento inequívoco al suscribirse o enviarnos información voluntariamente.</li>
+				<li>La relación profesional existente o solicitud de servicios.</li>
+			</ul>
+			<p>En ningún caso la retirada del consentimiento condiciona el acceso a los servicios ya prestados.</p>
+			
+			<h3>Derechos del Interesado</h3>
+			<p>Cualquier persona tiene derecho a:</p>
+			<ul>
+				<li>Acceder a sus datos personales.</li>
+				<li>Solicitar la rectificación de datos inexactos.</li>
+				<li>Solicitar la supresión de sus datos.</li>
+				<li>Solicitar la limitación del tratamiento.</li>
+				<li>Oponerse al tratamiento por motivos relacionados con su situación.</li>
+				<li>Solicitar la portabilidad de sus datos.</li>
+				<li>Revocar en cualquier momento el consentimiento otorgado.</li>
+			</ul>
+			<p>Puede ejercer estos derechos enviando comunicación a: <strong>asesor@asesolabygonzalbesasociados.com</strong></p>
+			<p>Asimismo, puede darse de baja de nuestras comunicaciones respondiendo a cualquier email con el asunto "BAJA".</p>
+			<p>Tiene derecho a presentar reclamación ante la Agencia Española de Protección de Datos si considera vulnerados sus derechos.</p>
+			
+			<h3>Procedencia de los Datos</h3>
+			<p>Los datos tratados en ASESOLAB proceden de:</p>
+			<ul>
+				<li>Formularios de contacto del sitio web.</li>
+				<li>Citas previas o comunicaciones directas del usuario.</li>
+				<li>Información aportada voluntariamente durante la relación profesional.</li>
+			</ul>
+			<p>Categorías tratadas:</p>
+			<ul>
+				<li>Datos identificativos</li>
+				<li>Direcciones postales y electrónicas</li>
+				<li>Información económica necesaria para la prestación de servicios jurídicos o fiscales</li>
+				<li>Datos aportados mediante cookies técnicas y analíticas</li>
+			</ul>
+			
+			<h3>Conservación, almacenamiento y proveedores tecnológicos</h3>
+			<ul>
+				<li>Utilizamos infraestructura alojada en servidores de alta seguridad que cumplen estándares internacionales.</li>
+				<li>Empleamos herramientas de análisis web como Google Analytics para evaluar el rendimiento de la web.</li>
+				<li>Aplicamos medidas físicas, electrónicas y organizativas para proteger los datos.</li>
+			</ul>
+			<p>ASESOLAB nunca vende ni cede datos personales a terceros sin autorización expresa.</p>
+			
+			<h3>Seguridad de la Información</h3>
+			<p>Nos comprometemos a:</p>
+			<ul>
+				<li>Preservar la confidencialidad de la información.</li>
+				<li>Evitar accesos no autorizados.</li>
+				<li>Aplicar medidas de seguridad conforme a la normativa vigente.</li>
+			</ul>
+			<p>Aunque aplicamos todas las medidas razonables, no podemos garantizar la invulnerabilidad absoluta de Internet.</p>
+			
+			<h3>Información en redes sociales oficiales de ASESOLAB</h3>
+			<p>Esta política se aplica también a los canales oficiales:</p>
+			<ul>
+				<li>Página web: www.asesolab.com</li>
+				<li>Instagram: https://www.instagram.com/asesolab_asesores/</li>
+			</ul>
+			<p>La información publicada en redes sociales no constituye asesoramiento legal personalizado.</p>
+			
+			<h3>Modificaciones de la Política de Privacidad</h3>
+			<p>ASESOLAB podrá modificar esta política para adaptarla a:</p>
+			<ul>
+				<li>Cambios legislativos</li>
+				<li>Cambios jurisprudenciales</li>
+				<li>Actualizaciones internas</li>
+			</ul>
+			<p>Las modificaciones serán comunicadas con antelación razonable.</p>
+			<p><strong>Última actualización: 9 de julio de 2025.</strong></p>
+		</div>
+	</div>
+
+	<!-- Modal Política de Cookies -->
+	<div id="cookiesModal" class="modal">
+		<div class="modal-content">
+			<button class="modal-close">&times;</button>
+			<h2>Política de Cookies – ASESOLAB CONSULTING LLC</h2>
+			<p>ASESOLAB CONSULTING LLC ("nosotros", "nos", o "nuestro") utiliza cookies en el sitio web www.asesolab.com (el "Servicio"). Al utilizar el Servicio, usted acepta el uso de cookies en los términos establecidos en la presente Política.</p>
+			<p>Esta Política de Cookies explica qué son las cookies, cómo las utilizamos, cómo pueden utilizarlas terceros con los que colaboramos, cuáles son sus opciones respecto a su gestión y dónde obtener más información.</p>
+			
+			<h3>1. ¿Qué son las cookies?</h3>
+			<p>Las cookies son pequeños archivos de texto que un sitio web envía al navegador del usuario. Estos archivos permiten reconocer el dispositivo en futuras visitas, facilitar la navegación, recordar preferencias y mejorar la experiencia del usuario.</p>
+			<p>Las cookies pueden ser:</p>
+			<ul>
+				<li><strong>Cookies de sesión:</strong> se eliminan al cerrar el navegador.</li>
+				<li><strong>Cookies persistentes:</strong> permanecen almacenadas en el dispositivo hasta su expiración o eliminación manual.</li>
+			</ul>
+			
+			<h3>2. ¿Cómo utiliza las cookies ASESOLAB CONSULTING LLC?</h3>
+			<p>Cuando accede al Servicio, podemos instalar diversas cookies en su navegador con los siguientes fines:</p>
+			
+			<p><strong>a) Cookies esenciales</strong></p>
+			<p>Permiten el funcionamiento básico del sitio web y recordar configuraciones que afectan a su navegación, como la preferencia de idioma.</p>
+			
+			<p><strong>b) Cookies analíticas</strong></p>
+			<p>Nos ayudan a comprender cómo interactúan los usuarios con la web, detectar mejoras necesarias y realizar pruebas sobre nuevas funciones, páginas o elementos visuales.</p>
+			
+			<p><strong>c) Cookies de terceros</strong></p>
+			<p>Podemos utilizar cookies de proveedores externos para:</p>
+			<ul>
+				<li>Obtener estadísticas de uso.</li>
+				<li>Mejorar el rendimiento del sitio.</li>
+				<li>Mostrar contenido o publicidad a través de plataformas externas.</li>
+			</ul>
+			<p>Entre los terceros que pueden instalar cookies se encuentran herramientas como Google Analytics.</p>
+			
+			<h3>3. ¿Qué opciones tiene respecto a las cookies?</h3>
+			<p>Puede eliminar las cookies existentes o configurar su navegador para evitar su instalación.</p>
+			<p>Debe tener en cuenta que, si rechaza o elimina las cookies, es posible que:</p>
+			<ul>
+				<li>No pueda utilizar todas las funciones del sitio.</li>
+				<li>No se conserven sus preferencias.</li>
+				<li>Algunas páginas no se muestren correctamente.</li>
+			</ul>
+			<p>En los siguientes enlaces puede consultar cómo gestionar las cookies según su navegador:</p>
+			<ul>
+				<li>Chrome: <a href="https://support.google.com/accounts/answer/32050" target="_blank">https://support.google.com/accounts/answer/32050</a></li>
+				<li>Internet Explorer: <a href="http://support.microsoft.com/kb/278835" target="_blank">http://support.microsoft.com/kb/278835</a></li>
+				<li>Firefox: <a href="https://support.mozilla.org/en-US/kb/delete-cookies-remove-info-websites-stored" target="_blank">https://support.mozilla.org/en-US/kb/delete-cookies-remove-info-websites-stored</a></li>
+				<li>Safari: <a href="https://support.apple.com/kb/PH21411?locale=en_US" target="_blank">https://support.apple.com/kb/PH21411?locale=en_US</a></li>
+			</ul>
+			<p>Para otros navegadores, consulte la documentación oficial del mismo.</p>
+			
+			<h3>4. Más información sobre cookies</h3>
+			<p>Puede obtener información adicional en:</p>
+			<ul>
+				<li>All About Cookies: <a href="http://www.allaboutcookies.org/" target="_blank">http://www.allaboutcookies.org/</a></li>
+				<li>Network Advertising Initiative: <a href="http://www.networkadvertising.org/" target="_blank">http://www.networkadvertising.org/</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<script>
+		// LÓGICA COMPLETA PARA COOKIES, MODALES Y VIDEO
+		document.addEventListener('DOMContentLoaded', function() {
+			// === ELEMENTOS PRINCIPALES ===
+			const cookieOverlay = document.getElementById('cookieOverlay');
+			const mainContent = document.getElementById('mainContent');
+			const cookieBanner = document.getElementById('cookieBanner');
+			
+			// === ELEMENTOS DE COOKIES ===
+			const acceptCookiesOverlay = document.getElementById('acceptCookiesOverlay');
+			const rejectCookiesOverlay = document.getElementById('rejectCookiesOverlay');
+			const acceptCookies = document.getElementById('acceptCookies');
+			const rejectCookies = document.getElementById('rejectCookies');
+			const cookiePolicyLinkOverlay = document.getElementById('cookiePolicyLinkOverlay');
+			const cookiePolicyLinkBanner = document.getElementById('cookiePolicyLinkBanner');
+			
+			// === ENLACES DEL FOOTER ===
+			const avisoLegalLink = document.getElementById('avisoLegalLink');
+			const privacidadLink = document.getElementById('privacidadLink');
+			const cookiesLink = document.getElementById('cookiesLink');
+			
+			// === MODALES ===
+			const avisoLegalModal = document.getElementById('avisoLegalModal');
+			const privacidadModal = document.getElementById('privacidadModal');
+			const cookiesModal = document.getElementById('cookiesModal');
+			const modalCloseButtons = document.querySelectorAll('.modal-close');
+			
+			// === ELEMENTOS DEL VIDEO ===
+			const videoPlaceholder = document.getElementById('videoPlaceholder');
+			const videoIframe = document.getElementById('videoIframe');
+			
+			// === VARIABLES DE ESTADO ===
+			let cookiesDecisionMade = false;
+			
+			// === FUNCIONES PRINCIPALES ===
+			
+			// 1. FUNCIÓN PARA CARGAR EL VIDEO DE YOUTUBE - VERSIÓN MEJORADA
+			function loadYouTubeVideo() {
+				if (!videoPlaceholder || !videoIframe) return;
+				
+				// ID de video: ZWO-Tp9UbEw
+				const videoId = 'ZWO-Tp9UbEw';
+				
+				// URL optimizada para evitar errores (usando youtube-nocookie)
+				const videoUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&controls=1&enablejsapi=1`;
+				
+				try {
+					// Establecer la URL en el iframe
+					videoIframe.src = videoUrl;
+					
+					// Mostrar el iframe y ocultar el placeholder
+					videoIframe.style.display = 'block';
+					videoPlaceholder.style.display = 'none';
+					
+					console.log('Video cargado (modo seguro):', videoUrl);
+				} catch (error) {
+					console.error('Error al cargar el video:', error);
+					
+					// Si hay error, mostrar mensaje al usuario
+					videoPlaceholder.innerHTML = `
+						<div style="text-align: center; padding: 20px;">
+							<div class="play-button">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+									<path d="M8 5v14l11-7z"/>
+								</svg>
+							</div>
+							<p>Error al cargar el video</p>
+							<p style="font-size: 14px; margin-top: 10px;">
+								<a href="https://youtu.be/${videoId}" target="_blank" 
+								   style="color: white; text-decoration: underline;">
+									Ver en YouTube
+								</a>
+							</p>
+						</div>
+					`;
+				}
+			}
+			
+			// 2. FUNCIÓN PARA ACEPTAR TODAS LAS COOKIES
+			function acceptAllCookies() {
+				// Guardar decisión del usuario
+				localStorage.setItem('cookiesDecision', 'accepted');
+				localStorage.setItem('cookiesType', 'all');
+				cookiesDecisionMade = true;
+				
+				// Mostrar contenido principal
+				cookieOverlay.style.display = 'none';
+				mainContent.classList.add('active');
+				cookieBanner.classList.remove('active');
+				
+				// Restaurar scroll
+				document.body.style.overflow = 'auto';
+				
+				console.log('Cookies aceptadas');
+			}
+			
+			// 3. FUNCIÓN PARA RECHAZAR COOKIES NO ESENCIALES
+			function rejectNonEssentialCookies() {
+				// Guardar decisión del usuario
+				localStorage.setItem('cookiesDecision', 'rejected');
+				localStorage.setItem('cookiesType', 'essential');
+				cookiesDecisionMade = true;
+				
+				// Mostrar contenido principal
+				cookieOverlay.style.display = 'none';
+				mainContent.classList.add('active');
+				cookieBanner.classList.add('active');
+				
+				// Restaurar scroll
+				document.body.style.overflow = 'auto';
+				
+				console.log('Cookies no esenciales rechazadas');
+			}
+			
+			// 4. FUNCIÓN PARA ABRIR MODALES
+			function openModal(modal) {
+				if (!modal) return;
+				modal.classList.add('active');
+				document.body.style.overflow = 'hidden';
+			}
+			
+			// 5. FUNCIÓN PARA CERRAR MODALES
+			function closeModal(modal) {
+				if (!modal) return;
+				modal.classList.remove('active');
+				document.body.style.overflow = 'auto';
+			}
+			
+			// 6. FUNCIÓN PARA CARGAR OPINIONES
+			function loadTestimonials() {
+				const testimonialsContainer = document.getElementById('testimonialsContainer');
+				if (!testimonialsContainer) return;
+				
+				// Opiniones reales de Trustpilot
+				const testimonials = [
+					{
+						rating: '★★★★★',
+						text: '"Mi experiencia con AsesorLab ha sido excelente. Gonzalo y su equipo han demostrado un profundo conocimiento en materia fiscal y han sido muy resolutivos. Han optimizado mi situación fiscal de manera significativa y su asesoramiento ha sido claro y profesional en todo momento."',
+						author: 'Juan Carlos',
+						date: 'Empresario - Revisión reciente'
+					},
+					{
+						rating: '★★★★★',
+						text: '"Contraté los servicios de AsesorLab para la planificación fiscal de mi empresa y ha sido una de las mejores decisiones. No solo han cumplido con todas las expectativas, sino que han superado ampliamente lo que esperaba. Su enfoque proactivo y su capacidad para anticiparse a los problemas han sido clave."',
+						author: 'María López',
+						date: 'Directora de empresa - Revisión reciente'
+					},
+					{
+						rating: '★★★★★',
+						text: '"Después de años con gestorías tradicionales, descubrir AsesorLab ha sido un cambio radical. Su equipo de abogados fiscalistas no solo presenta impuestos, sino que diseña estrategias reales de ahorro. La comunicación es directa y personalizada, algo que valoramos enormemente."',
+						author: 'Carlos Fernández',
+						date: 'Propietario de negocio - Revisión reciente'
+					}
+				];
+				
+				// Limpiar y cargar testimonios
+				testimonialsContainer.innerHTML = '';
+				testimonials.forEach(testimonial => {
+					const testimonialCard = document.createElement('div');
+					testimonialCard.className = 'testimonial-card';
+					testimonialCard.innerHTML = `
+						<div class="testimonial-rating">${testimonial.rating}</div>
+						<p class="testimonial-text">${testimonial.text}</p>
+						<p class="testimonial-author">${testimonial.author}</p>
+						<p class="testimonial-date">${testimonial.date}</p>
+					`;
+					testimonialsContainer.appendChild(testimonialCard);
+				});
+			}
+			
+			// 7. FUNCIÓN PARA INICIALIZAR LOGO - ACTUALIZADA CON TAMAÑO MÁS GRANDE
+			function initializeLogo() {
+				const logoElement = document.querySelector('.logo-img');
+				if (!logoElement) return;
+				
+				const logoImg = document.createElement('img');
+				logoImg.src = 'images/logo-asesolab.png';
+				logoImg.alt = 'ASESOLAB';
+				logoImg.style.height = '50px'; // TAMAÑO AUMENTADO de 40px a 50px
+				logoImg.style.width = 'auto';
+				
+				// Manejar error de carga de imagen
+				logoImg.onerror = function() {
+					console.log('Logo no encontrado, usando texto como fallback');
+				};
+				
+				// Reemplazar si la imagen se carga
+				logoImg.onload = function() {
+					logoElement.parentNode.replaceChild(logoImg, logoElement);
+				};
+			}
+			
+			// === INICIALIZACIÓN ===
+			function initializePage() {
+				// 1. Cargar testimonios
+				loadTestimonials();
+				
+				// 2. Inicializar logo
+				initializeLogo();
+				
+				// 3. Verificar decisión previa de cookies
+				const previousDecision = localStorage.getItem('cookiesDecision');
+				const previousType = localStorage.getItem('cookiesType');
+				
+				// SIEMPRE mostrar overlay de cookies (como solicitaste)
+				// Esto hace que aparezca cada vez que se entra a la página
+				cookieOverlay.style.display = 'flex';
+				mainContent.classList.remove('active');
+				document.body.style.overflow = 'hidden';
+				
+				// Si ya había una decisión previa, mostrar banner también
+				if (previousDecision === 'rejected' && previousType === 'essential') {
+					setTimeout(() => {
+						cookieBanner.classList.add('active');
+					}, 100);
+				}
+			}
+			
+			// === EVENT LISTENERS ===
+			
+			// 1. Event listeners para overlay de cookies
+			if (acceptCookiesOverlay) {
+				acceptCookiesOverlay.addEventListener('click', acceptAllCookies);
+			}
+			
+			if (rejectCookiesOverlay) {
+				rejectCookiesOverlay.addEventListener('click', rejectNonEssentialCookies);
+			}
+			
+			// 2. Event listeners para banner de cookies
+			if (acceptCookies) {
+				acceptCookies.addEventListener('click', function() {
+					acceptAllCookies();
+					cookieBanner.classList.remove('active');
+				});
+			}
+			
+			if (rejectCookies) {
+				rejectCookies.addEventListener('click', function() {
+					rejectNonEssentialCookies();
+				});
+			}
+			
+			// 3. Event listener para el video
+			if (videoPlaceholder) {
+				videoPlaceholder.addEventListener('click', loadYouTubeVideo);
+			}
+			
+			// 4. Event listeners para enlaces de política de cookies
+			if (cookiePolicyLinkOverlay) {
+				cookiePolicyLinkOverlay.addEventListener('click', function(e) {
+					e.preventDefault();
+					cookieOverlay.style.display = 'none';
+					openModal(cookiesModal);
+				});
+			}
+			
+			if (cookiePolicyLinkBanner) {
+				cookiePolicyLinkBanner.addEventListener('click', function(e) {
+					e.preventDefault();
+					openModal(cookiesModal);
+				});
+			}
+			
+			// 5. Event listeners para enlaces del footer
+			if (avisoLegalLink) {
+				avisoLegalLink.addEventListener('click', function(e) {
+					e.preventDefault();
+					openModal(avisoLegalModal);
+				});
+			}
+			
+			if (privacidadLink) {
+				privacidadLink.addEventListener('click', function(e) {
+					e.preventDefault();
+					openModal(privacidadModal);
+				});
+			}
+			
+			if (cookiesLink) {
+				cookiesLink.addEventListener('click', function(e) {
+					e.preventDefault();
+					openModal(cookiesModal);
+				});
+			}
+			
+			// 6. Event listeners para cerrar modales
+			modalCloseButtons.forEach(button => {
+				button.addEventListener('click', function() {
+					const modal = this.closest('.modal');
+					closeModal(modal);
+				});
+			});
+			
+			// 7. Cerrar modal al hacer clic fuera del contenido
+			window.addEventListener('click', function(e) {
+				const modals = document.querySelectorAll('.modal.active');
+				modals.forEach(modal => {
+					if (e.target === modal) {
+						closeModal(modal);
+					}
+				});
+			});
+			
+			// 8. Cerrar modal con tecla ESC
+			window.addEventListener('keydown', function(e) {
+				if (e.key === 'Escape') {
+					const modals = document.querySelectorAll('.modal.active');
+					modals.forEach(modal => {
+						closeModal(modal);
+					});
+				}
+			});
+			
+			// === INICIALIZAR LA PÁGINA ===
+			initializePage();
+			
+			// === CONFIGURACIÓN ADICIONAL ===
+			// Configurar el iframe del video para evitar errores
+			if (videoIframe) {
+				// Configuración mínima para evitar errores de consola
+				videoIframe.setAttribute('allowfullscreen', '');
+				videoIframe.setAttribute('title', 'Video explicativo ASESOLAB');
+			}
+		});
+	</script>
+</body>
+</html>
